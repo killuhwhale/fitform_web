@@ -9,6 +9,8 @@ import { User } from "lib/session";
 
 import { env } from "components/env.mjs";
 
+type loginResult = { access: string };
+
 /** Should rename to reflect Django API access */
 export const loginRouter = createTRPCRouter({
   login: publicProcedure
@@ -24,7 +26,7 @@ export const loginRouter = createTRPCRouter({
         body: JSON.stringify(input),
       });
 
-      const data = (await res.json()) as any;
+      const data: loginResult = (await res.json()) as loginResult;
       let loggedIn = false;
       let error = null;
       let token = "";
@@ -34,15 +36,15 @@ export const loginRouter = createTRPCRouter({
         token = data.access;
         loggedIn = true;
 
-        const userInfoRes = await fetch(`${env.BASE_URL}/users/user_info/`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${data.access}`,
-          },
-        });
-
-        const userInfo = await userInfoRes.json();
+        const userInfo: User = (await (
+          await fetch(`${env.BASE_URL}/users/user_info/`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${data.access}`,
+            },
+          })
+        ).json()) as User;
 
         ctx.session.user = {
           token: token,
@@ -71,7 +73,7 @@ export const loginRouter = createTRPCRouter({
     .mutation(async ({ input, ctx }) => {
       // makes request to FITFORM login api
       // /token/
-      await ctx.session.destroy();
+      ctx.session.destroy();
 
       ctx.session.user = {
         token: "",

@@ -44,10 +44,12 @@ const ProductDisplay: react.FC<ProductDisplayProps> = (props) => {
       setLoading(false);
     };
 
-    redirect();
+    redirect()
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   }, [checkoutSession.data?.stripeSession]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     setLoading(true);
     if (!selected) return;
     // if (checkoutSession.data?.stripeSession) {
@@ -123,7 +125,9 @@ const ProductDisplay: react.FC<ProductDisplayProps> = (props) => {
 
         <ActionCancelModal
           isOpen={isModalOpen}
-          message={`Confirm subscription: ${selected?.name} ${selected?.description} ${selected?.price}`}
+          message={`Confirm subscription: ${selected?.name ?? ""} ${
+            selected?.description ?? ""
+          } ${selected?.price ?? ""}`}
           onClose={() => setIsModalOpen(false)}
           onAction={() => handleSubmit()}
           note={DISCLAIMER}

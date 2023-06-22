@@ -44,7 +44,7 @@ export const getServerSideProps = withIronSessionSsr(
             "Content-Type": "application/json",
           },
         });
-        const updateUser = await updateRes.json();
+        const updateUser: User = (await updateRes.json()) as User;
 
         console.log("updateData: ", updateUser);
         if (updateUser.id && updateUser.email) {
@@ -90,17 +90,19 @@ const SubscriptionSuccessPage: NextPage<{ user: User }> = (props) => {
   const { query } = router;
 
   useEffect(() => {
-    const redirect = async () => {
-      if (!portal.data?.portalSession) return;
-      // Redirect to Checkout.
-      console.log("Pushing url", portal.data?.portalSession.url);
-      window.location.href = portal.data?.portalSession.url;
-    };
+    if (!portal.data?.portalSession) return;
+    // Redirect to Checkout.
+    console.log("Pushing url", portal.data?.portalSession.url);
+    window.location.href = portal.data?.portalSession.url;
+    // async function redirect() {
+    // }
 
-    redirect();
+    // redirect()
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.log(err));
   }, [portal.data?.portalSession]);
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     /** Starts portal stream via mutation.  */
     e.preventDefault();
     console.log("Session id", query, query.session_id);
@@ -129,9 +131,9 @@ const SubscriptionSuccessPage: NextPage<{ user: User }> = (props) => {
                 Welcome to our community!
               </p>
               <p className="text-base">
-                Thanks for subscribing to our app. You're now part of the
-                FitForm community. We can't wait to see all your workouts to
-                come. Happy Fitnessing!
+                {
+                  " Thanks for subscribing to our app. You're now part of the FitForm community. We can't wait to see all your workouts to come. Happy Fitnessing!"
+                }
               </p>
             </div>
           ) : (

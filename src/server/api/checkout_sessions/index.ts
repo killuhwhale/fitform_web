@@ -66,7 +66,7 @@ export const stripeRouter = createTRPCRouter({
           return res
             .status(500)
             .json({ statusCode: 500, message: "Unable to get customer ID." });
-        let customerId = customer.id;
+        const customerId = customer.id;
         const md = {
           metadata: {
             duration: product.duration,
@@ -144,26 +144,6 @@ export const stripeRouter = createTRPCRouter({
         const errorMessage =
           err instanceof Error ? err.message : "Internal server error";
         console.log("Error portal", err);
-        res.status(500).json({ statusCode: 500, message: errorMessage });
-      }
-    }),
-
-  hookChargeSucceeded: publicProcedure
-    .input(
-      z.object({
-        sessionId: z.string(),
-      })
-    )
-    .mutation(async ({ input, ctx }) => {
-      console.log("Webhook charge succeeded...");
-      if (!stripe) return;
-      const res = ctx.res;
-      const req = ctx.req;
-      try {
-      } catch (err) {
-        const errorMessage =
-          err instanceof Error ? err.message : "Internal server error";
-        console.log("Error Charge Succeeded", err);
         res.status(500).json({ statusCode: 500, message: errorMessage });
       }
     }),

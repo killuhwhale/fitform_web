@@ -96,7 +96,7 @@ export const getServerSideProps = withIronSessionSsr(
 
       console.log("updateData: ", updateRes);
       if (updateRes.status == 200) {
-        const updateUser = await updateRes.json();
+        const updateUser: User = (await updateRes.json()) as User;
         console.log("updateData: ", updateUser);
         if (updateUser.id && updateUser.email) {
           req.session.user = { ...req.session.user, ...updateUser };
