@@ -40,7 +40,7 @@ const ProductDisplay: react.FC<ProductDisplayProps> = (props) => {
       // If `redirectToCheckout` fails due to a browser or network
       // error, display the localized error message to your customer
       // using `error.message`.
-      console.warn(error.message);
+      console.warn("Error w/ redirect product display", error.message);
       setLoading(false);
     };
 

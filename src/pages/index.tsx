@@ -1,18 +1,16 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
-import { api } from "components/utils/api";
+
 import react, { useEffect, useState, PropsWithChildren } from "react";
 import Header from "components/components/Header";
 import { withIronSessionSsr } from "iron-session/next";
 import { ironOptions } from "lib/config";
 import { User } from "lib/session";
-import { CURRENCY, Product, Products, products } from "lib/stripe_config";
-import CheckoutForm from "components/components/CheckoutForm";
-import getStripe from "components/utils/getStripe";
+import { products } from "lib/stripe_config";
+
 import ProductDisplay from "components/components/ProductDisplay";
-import ActionCancelModal from "components/components/modals/ActionCancelModal";
+
 import { env } from "components/env.mjs";
 interface ImageTextRowProps {
   url: string;
