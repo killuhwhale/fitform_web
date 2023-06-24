@@ -16,11 +16,11 @@ export const getBaseUrl = () => {
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`; // SSR should use vercel url
   return `http://localhost:${process.env.PORT ?? 3000}`; // dev SSR should use localhost
 };
-
+console.log("Using baseURL trpc: ", getBaseUrl());
 /** A set of type-safe react-query hooks for your tRPC API. */
 export const api = createTRPCNext<AppRouter>({
   config() {
-    console.log("Using baseURL trpc: ", getBaseUrl());
+    console.log("Using baseURL trpcA: ", getBaseUrl());
     return {
       /**
        * Transformer used for data de-serialization from the server.
