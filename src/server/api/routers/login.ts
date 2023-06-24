@@ -18,6 +18,8 @@ export const loginRouter = createTRPCRouter({
     .mutation(async ({ input, ctx }) => {
       // makes request to FITFORM login api
       // /token/
+      console.log("Logging in...");
+
       const res = await fetch(`${env.BASE_URL}/token/`, {
         method: "POST",
         headers: {
