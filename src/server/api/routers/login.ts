@@ -19,16 +19,25 @@ export const loginRouter = createTRPCRouter({
       // makes request to FITFORM login api
       // /token/
       console.log("Logging in...");
+      let data: loginResult | null = null;
+      try {
+        const res = await fetch(`${env.BASE_URL}/token/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(input),
+        });
+        data = (await res.json()) as loginResult;
+      } catch (err) {
+        console.log("error getting token: ", err);
+        return {
+          loggedIn: false,
+          error: err,
+          token: "",
+        };
+      }
 
-      const res = await fetch(`${env.BASE_URL}/token/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(input),
-      });
-
-      const data: loginResult = (await res.json()) as loginResult;
       let loggedIn = false;
       let error = null;
       let token = "";
