@@ -28,10 +28,10 @@ const SignInForm = () => {
     console.log("Logged in data: ", login);
     if (login.data && login.data.loggedIn && !token) {
       setToken(login.data.token);
-      router
-        .push("/")
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+      // router
+      //   .push("/")
+      //   .then((res) => console.log(res))
+      //   .catch((err) => console.log(err));
     }
   }, [login.data]);
 
