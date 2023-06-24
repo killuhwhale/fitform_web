@@ -34,7 +34,7 @@ const ImageAndTextRow: react.FC<PropsWithChildren<ImageTextRowProps>> = (
   return (
     <div className="container flex max-w-full flex-wrap content-center  items-center">
       <div className="px-4 sm:w-1/2">
-        <Image
+        <img
           src={props.url}
           alt="My Image"
           width={500}
@@ -69,7 +69,7 @@ const TextAndImageRow: react.FC<PropsWithChildren<ImageTextRowProps>> = (
       </div>
 
       <div className="mx-auto w-full sm:w-1/2 sm:px-4">
-        <Image
+        <img
           src={props.url}
           alt="My Image"
           className="ml-12"

@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "cleanup": "rm -r node_modules",
+    "copy": "mv ./.next/static ./.next/standalone/; cp -r ./public ./.next/standalone/",
     "dev": "next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
