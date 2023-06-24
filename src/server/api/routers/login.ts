@@ -46,6 +46,7 @@ export const loginRouter = createTRPCRouter({
           })
         ).json()) as User;
 
+        console.log("Saving user to session: ", userInfo);
         ctx.session.user = {
           token: token,
           email: userInfo.email,
@@ -57,6 +58,7 @@ export const loginRouter = createTRPCRouter({
         } as User;
 
         await ctx.session.save();
+        console.log("Session saved: ", ctx.session);
       } else {
         error = true;
       }
