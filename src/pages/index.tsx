@@ -152,19 +152,17 @@ const Home: NextPage<{ user: User }> = (props) => {
                 target="_blank"
               >
                 <h3 className="text-2xl font-bold">iOS →</h3>
-                <img className="rounded-xl" src="/images/iosStore.jpeg"></img>
+                <img className="rounded-xl" src="/images/ios.svg"></img>
               </Link>
-              <Link
-                className="flex  max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-                href="https://play.google.com/store/apps/details?id=com.fitform"
-                target="_blank"
-              >
+              <div className="flex  max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20">
                 <h3 className="text-2xl font-bold">Android →</h3>
-                <img
-                  className=" max-h-[145px] w-96 rounded-xl object-fill"
-                  src="/images/googleplayA.jpeg"
-                />
-              </Link>
+                <a href="https://play.google.com/store/apps/details?id=com.fitform&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+                  <img
+                    alt="Get it on Google Play"
+                    src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                  />
+                </a>
+              </div>
             </div>
           </div>
         </div>
