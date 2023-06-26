@@ -2,6 +2,7 @@
 npm run dev
 ssh killuh@164.92.104.164
 
+https://docs.digitalocean.com/developer-center/deploying-a-next.js-application-on-a-digitalocean-droplet/
 
 # TODO
 
@@ -45,6 +46,8 @@ sudo ufw allow 8000
 
 
 # Nginx
+
+sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled
 
 sudo systemctl stop nginx
 sudo systemctl start nginx
