@@ -31,13 +31,13 @@ const ImageAndTextRow: react.FC<PropsWithChildren<ImageTextRowProps>> = (
 ) => {
   return (
     <div className="container flex max-w-full flex-wrap content-center  items-center">
-      <div className="px-4 sm:w-1/2">
+      <div className="w-full sm:w-1/2 sm:px-4">
         <img
           src={props.url}
           alt="My Image"
           width={500}
           height={500}
-          className="float-right mr-12"
+          className="sm:float-right sm:mr-12"
           style={{
             objectFit: "contain",
             objectPosition: "right",
@@ -46,8 +46,8 @@ const ImageAndTextRow: react.FC<PropsWithChildren<ImageTextRowProps>> = (
         />
       </div>
 
-      <div className="mx-auto w-full px-4 sm:w-1/2">
-        <ul className="mx-auto ml-12 list-disc content-center items-center justify-center">
+      <div className="mx-auto w-full sm:w-1/2 sm:px-4">
+        <ul className="mx-auto list-disc content-center items-center justify-center sm:ml-12">
           {props.children}
         </ul>
       </div>
@@ -60,9 +60,9 @@ const TextAndImageRow: react.FC<PropsWithChildren<ImageTextRowProps>> = (
 ) => {
   return (
     <div className="container flex max-w-full flex-wrap content-center  items-center">
-      <div className="px-4 sm:w-1/2 ">
-        <div className="pr-12">
-          <div className="float-right w-[500px]">{props.children}</div>
+      <div className="w-full sm:w-1/2 sm:px-4 ">
+        <div className="sm:pr-12">
+          <div className="float-right sm:w-[500px]">{props.children}</div>
         </div>
       </div>
 
@@ -70,7 +70,7 @@ const TextAndImageRow: react.FC<PropsWithChildren<ImageTextRowProps>> = (
         <img
           src={props.url}
           alt="My Image"
-          className="ml-12"
+          className="sm:ml-12"
           width={500}
           height={500}
           style={{ borderRadius: 8 }}
