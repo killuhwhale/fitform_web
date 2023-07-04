@@ -83,3 +83,4 @@ sudo systemctl restart nginx
 ## Server Logs
      - /var/log/nginx/access.log: Every request to your web server is recorded in this log file unless Nginx is configured to do otherwise.
      - /var/log/nginx/error.log: Any Nginx errors will be recorded in this log.
+

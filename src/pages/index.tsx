@@ -31,13 +31,13 @@ const ImageAndTextRow: react.FC<PropsWithChildren<ImageTextRowProps>> = (
 ) => {
   return (
     <div className="container flex max-w-full flex-wrap content-center  items-center">
-      <div className="w-full sm:w-1/2 sm:px-4">
+      <div className="md:w-1/2 md:px-4">
         <img
           src={props.url}
           alt="My Image"
           width={500}
           height={500}
-          className="sm:float-right sm:mr-12"
+          className="md:float-right md:mr-12"
           style={{
             objectFit: "contain",
             objectPosition: "right",
@@ -46,8 +46,8 @@ const ImageAndTextRow: react.FC<PropsWithChildren<ImageTextRowProps>> = (
         />
       </div>
 
-      <div className="mx-auto w-full sm:w-1/2 sm:px-4">
-        <ul className="mx-auto list-disc content-center items-center justify-center sm:ml-12">
+      <div className="mx-auto  md:w-1/2 md:px-4">
+        <ul className="mx-auto list-disc content-center items-center justify-center md:ml-12">
           {props.children}
         </ul>
       </div>
@@ -59,14 +59,14 @@ const TextAndImageRow: react.FC<PropsWithChildren<ImageTextRowProps>> = (
   props
 ) => {
   return (
-    <div className="container flex max-w-full flex-wrap content-center  items-center">
-      <div className="w-full sm:w-1/2 sm:px-4 ">
-        <div className="sm:pr-12">
-          <div className="float-right sm:w-[500px]">{props.children}</div>
+    <div className="container flex max-w-full  flex-wrap content-center items-center">
+      <div className="w-full lg:w-1/2 lg:px-4 ">
+        <div className="lg:pr-12">
+          <div className="float-right lg:w-[500px]">{props.children}</div>
         </div>
       </div>
 
-      <div className="mx-auto w-full sm:w-1/2 sm:px-4">
+      <div className="mx-auto w-full lg:w-1/2 lg:px-4">
         <img
           src={props.url}
           alt="My Image"
@@ -80,10 +80,38 @@ const TextAndImageRow: react.FC<PropsWithChildren<ImageTextRowProps>> = (
   );
 };
 
+const AppDownloadlinks: react.FC = () => {
+  return (
+    <div className="border-1 rounded-2xl border border-slate-300 p-5">
+      <p className="pb-8 text-center text-xl text-green-400">
+        Download Now on the App Store
+      </p>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8">
+        <Link
+          className="flex w-[420px] max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
+          href="https://apps.apple.com/us/app/fitform-trackerr/id1661392215"
+          target="_blank"
+        >
+          <h3 className="text-2xl font-bold">iOS →</h3>
+          <img className="rounded-xl" src="/images/ios.svg"></img>
+        </Link>
+        <div className="flex  max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20">
+          <h3 className="text-2xl font-bold">Android →</h3>
+          <a href="https://play.google.com/store/apps/details?id=com.fitform&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+            <img
+              alt="Get it on Google Play"
+              src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const getServerSideProps = withIronSessionSsr(
   async function getServerSideProps({ req }) {
     if (req.session.user) {
-      console.log("Fetching from: ", `${env.BASE_URL}/users/user_info/`);
       const updateRes = await fetch(`${env.BASE_URL}/users/user_info/`, {
         method: "GET",
         headers: {
@@ -92,10 +120,9 @@ export const getServerSideProps = withIronSessionSsr(
         },
       });
 
-      console.log("updateData: ", updateRes);
       if (updateRes.status == 200) {
         const updateUser: User = (await updateRes.json()) as User;
-        console.log("updateData: ", updateUser);
+
         if (updateUser.id && updateUser.email) {
           req.session.user = { ...req.session.user, ...updateUser };
           await req.session.save();
@@ -114,7 +141,7 @@ export const getServerSideProps = withIronSessionSsr(
 
 const Home: NextPage<{ user: User }> = (props) => {
   // const login = api.login.login.useMutation();
-  console.log("Page props", props);
+  // console.log("Page props", props);
   return (
     <>
       <Head>
@@ -134,35 +161,11 @@ const Home: NextPage<{ user: User }> = (props) => {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
             <div className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white">
-              Manage your gym and members progress in one place!
-            </div>
-            <div className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white">
               Create, Plan and Track your workouts. Easily visualize your effort
               across time.
             </div>
-          </div>
-          <div className="border-1 rounded-2xl border border-slate-300 p-5">
-            <p className="pb-8 text-center text-xl text-green-400">
-              Download Now on the App Store
-            </p>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-              <Link
-                className="flex w-[420px] max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-                href="https://apps.apple.com/us/app/fitform-trackerr/id1661392215"
-                target="_blank"
-              >
-                <h3 className="text-2xl font-bold">iOS →</h3>
-                <img className="rounded-xl" src="/images/ios.svg"></img>
-              </Link>
-              <div className="flex  max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20">
-                <h3 className="text-2xl font-bold">Android →</h3>
-                <a href="https://play.google.com/store/apps/details?id=com.fitform&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
-                  <img
-                    alt="Get it on Google Play"
-                    src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-                  />
-                </a>
-              </div>
+            <div className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white">
+              Manage your gym and members&apos; progress all in one place!
             </div>
           </div>
         </div>
@@ -184,6 +187,8 @@ const Home: NextPage<{ user: User }> = (props) => {
           )}
         </div>
 
+        <AppDownloadlinks />
+
         <BouncingHeader text="Membership" />
 
         <ImageAndTextRow url="/images/linechartA.png">
@@ -192,8 +197,13 @@ const Home: NextPage<{ user: User }> = (props) => {
           </p>
           <p className="p-4 text-xl text-cyan-200">Run unlimited gyms.</p>
           <p className="p-4 text-xl text-cyan-300">Create unlimited classes.</p>
+          <p className="p-4 text-xl text-cyan-300">Create private classes.</p>
+          <p className="p-4 text-xl text-cyan-300">
+            Allow Coaches to manage classes: Add/ remove workouts.
+          </p>
           <p className="p-4 text-xl text-cyan-400">
-            Create unlimited workouts for each class..
+            Give your Trainers & Coaches a place to host their workouts and
+            monitor their clients&apos; workout volume.
           </p>
         </ImageAndTextRow>
 
@@ -212,8 +222,12 @@ const Home: NextPage<{ user: User }> = (props) => {
           <p className="p-4 text-xl text-emerald-400">
             View your stats: see charts and graphs that summarize your workouts.
           </p>
+          <p className="p-4 text-xl text-emerald-500">Future features:</p>
           <p className="p-4 text-xl text-emerald-500">
-            Future: View your class members workouts.
+            - View your class members&apos; workout volume & stats.
+          </p>
+          <p className="p-4 text-xl text-emerald-500">
+            - View other members workout volume & stats.
           </p>
         </TextAndImageRow>
 
