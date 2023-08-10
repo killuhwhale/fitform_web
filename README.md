@@ -2,7 +2,6 @@
 npm run dev
 ssh killuh@164.92.104.164
 
-https://docs.digitalocean.com/developer-center/deploying-a-next.js-application-on-a-digitalocean-droplet/
 
 # TODO
 
@@ -32,6 +31,14 @@ sub_end_date
 OZB29D7AUVVNV817M2XTKSMVEZZIT3RB
 
 
+# NextJS
+
+https://docs.digitalocean.com/developer-center/deploying-a-next.js-application-on-a-digitalocean-droplet/
+
+## update program
+     git pull
+     npm run build
+     pm2 restart fitformnextjs
 
 
 # Django Gunicorn
@@ -43,6 +50,13 @@ https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postg
 sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx curl
 
 sudo ufw allow 8000
+
+
+## update program
+     git pull
+     source bin/activate
+     sudo systemctl restart gunicorn.service
+
 
 
 # Nginx
