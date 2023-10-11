@@ -86,7 +86,7 @@ const Login: NextPage = () => {
   return (
     <>
       <Head>
-        <title>FitForm - Login</title>
+        <title>FitTrackrr - Login</title>
         <meta
           name="description"
           content="Fitness platform to track and visualize workouts."

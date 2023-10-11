@@ -1,6 +1,6 @@
 
 npm run dev
-ssh killuh@164.92.104.164
+
 
 
 # TODO
@@ -17,14 +17,6 @@ Need to setup subscriptions webhook to update user account
     - onRenew
         - Update sub_end_date
 
-
-Need a job setup to check OUR db for sub_end_dates and set subscribed=False when SUB has expired.
-
-
-
-customer_id
-subscribed
-sub_end_date
 
 
 

@@ -35,8 +35,6 @@ export const getServerSideProps = withIronSessionSsr(
       console.log("Checkout Session: ", checkoutSession);
 
       if (query.success && req.session.user?.email) {
-        console.log("New subscription");
-
         const updateRes = await fetch(`${env.BASE_URL}/users/user_info/`, {
           method: "GET",
           headers: {
@@ -113,7 +111,7 @@ const SubscriptionSuccessPage: NextPage<{ user: User }> = (props) => {
   return (
     <>
       <Head>
-        <title>FitForm</title>
+        <title>FitTrackrr</title>
         <meta
           name="description"
           content="Fitness platform to track and visualize workouts."
@@ -131,7 +129,7 @@ const SubscriptionSuccessPage: NextPage<{ user: User }> = (props) => {
               </p>
               <p className="text-base">
                 {
-                  " Thanks for subscribing to our app. You're now part of the FitForm community. We can't wait to see all your workouts to come. Happy Fitnessing!"
+                  " Thanks for subscribing to our app. You're now part of the FitTrackrr community. We can't wait to see all your workouts to come. Happy Fitnessing!"
                 }
               </p>
             </div>

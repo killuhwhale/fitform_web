@@ -9,6 +9,7 @@ export type User = {
   customer_id?: string;
   subscribed: boolean;
   sub_end_date: Date;
+  error?: string;
 };
 
 // export const sessionOptions: IronSessionOptions = {

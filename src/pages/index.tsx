@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 
-import react, { useEffect, useState, PropsWithChildren } from "react";
+import { useEffect, useState, PropsWithChildren, FC } from "react";
 import Header from "components/components/Header";
 import { withIronSessionSsr } from "iron-session/next";
 import { ironOptions } from "lib/config";
@@ -16,7 +16,7 @@ interface ImageTextRowProps {
   url: string;
 }
 
-const BouncingHeader: react.FC<{ text: string }> = (props) => {
+const BouncingHeader: FC<{ text: string }> = (props) => {
   return (
     <div className=" inline-flex w-full flex-row items-center">
       <hr className="mx-auto my-4 mr-32 h-1 w-48 rounded border-0 bg-slate-300 md:my-20"></hr>
@@ -26,9 +26,7 @@ const BouncingHeader: react.FC<{ text: string }> = (props) => {
   );
 };
 
-const ImageAndTextRow: react.FC<PropsWithChildren<ImageTextRowProps>> = (
-  props
-) => {
+const ImageAndTextRow: FC<PropsWithChildren<ImageTextRowProps>> = (props) => {
   return (
     <div className="container flex max-w-full flex-wrap content-center  items-center">
       <div className="md:w-1/2 md:px-4">
@@ -55,9 +53,7 @@ const ImageAndTextRow: react.FC<PropsWithChildren<ImageTextRowProps>> = (
   );
 };
 
-const TextAndImageRow: react.FC<PropsWithChildren<ImageTextRowProps>> = (
-  props
-) => {
+const TextAndImageRow: FC<PropsWithChildren<ImageTextRowProps>> = (props) => {
   return (
     <div className="container flex max-w-full  flex-wrap content-center items-center">
       <div className="w-full lg:w-1/2 lg:px-4 ">
@@ -80,7 +76,7 @@ const TextAndImageRow: react.FC<PropsWithChildren<ImageTextRowProps>> = (
   );
 };
 
-const AppDownloadlinks: react.FC = () => {
+const AppDownloadlinks: FC = () => {
   return (
     <div className="border-1 rounded-2xl border border-slate-300 p-5">
       <p className="pb-8 text-center text-xl text-green-400">
@@ -120,6 +116,7 @@ export const getServerSideProps = withIronSessionSsr(
         },
       });
 
+      console.log("updateRes: ", updateRes);
       if (updateRes.status == 200) {
         const updateUser: User = (await updateRes.json()) as User;
 
@@ -145,7 +142,7 @@ const Home: NextPage<{ user: User }> = (props) => {
   return (
     <>
       <Head>
-        <title>FitForm</title>
+        <title>FitTrackrr</title>
         <meta
           name="description"
           content="Fitness platform to track and visualize workouts."
@@ -156,7 +153,7 @@ const Home: NextPage<{ user: User }> = (props) => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#007cff] to-[#15162c]">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            Fit<span className="text-[hsl(200,100%,70%)]">Form</span>
+            Fit<span className="text-[hsl(200,100%,70%)]">Trackrr</span>
           </h1>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">

@@ -10,6 +10,7 @@ import { User } from "lib/session";
 import { env } from "components/env.mjs";
 
 type loginResult = { access: string };
+type removeResult = { success: boolean; error: string };
 
 /** Should rename to reflect Django API access */
 export const loginRouter = createTRPCRouter({
@@ -103,6 +104,32 @@ export const loginRouter = createTRPCRouter({
       return {
         loggedOut: true,
       };
+    }),
+
+  removeAccount: protectedProcedure
+    .input(z.object({ email: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      try {
+        console.log("Using accesstoken: ", ctx.user.token);
+        const res = await fetch(`${env.BASE_URL}/account/remove/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${ctx.user.token}`,
+          },
+          body: JSON.stringify({
+            email: input.email,
+          }),
+        });
+        const data = (await res.json()) as removeResult;
+        return data;
+      } catch (err) {
+        console.log("Error rm account: ", err);
+        return {
+          success: false,
+          error: err,
+        };
+      }
     }),
 
   getAll: publicProcedure.query(({ ctx }) => {

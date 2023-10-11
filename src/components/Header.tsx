@@ -30,10 +30,10 @@ const Header: React.FC<{ user?: User }> = (props) => {
         >
           <img
             src="/images/icon_7.png"
-            className="rounded"
-            style={{ height: 48 }}
+            className="h-[40px] sm:h-[48px] lg:h-[64px]"
+            style={{ borderRadius: 100 }}
           />
-          <span className="ml-8">FitForm</span>
+          <span className="ml-8">FitTrackrr</span>
         </Link>
 
         <div className="md:hidden">
