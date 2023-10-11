@@ -12,6 +12,10 @@ import { products } from "lib/stripe_config";
 import ProductDisplay from "components/components/ProductDisplay";
 
 import { env } from "components/env.mjs";
+import {
+  APPLE_APP_STORE_APP_URL,
+  GOOGLE_PLAY_STORE_APP_URL,
+} from "components/utils/constants";
 interface ImageTextRowProps {
   url: string;
 }
@@ -85,7 +89,7 @@ const AppDownloadlinks: FC = () => {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8">
         <Link
           className="flex w-[420px] max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-          href="https://apps.apple.com/us/app/fitform-trackerr/id1661392215"
+          href={APPLE_APP_STORE_APP_URL}
           target="_blank"
         >
           <h3 className="text-2xl font-bold">iOS →</h3>
@@ -93,10 +97,7 @@ const AppDownloadlinks: FC = () => {
         </Link>
         <div className="flex  max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20">
           <h3 className="text-2xl font-bold">Android →</h3>
-          <Link
-            href="https://play.google.com/store/apps/details?id=com.fitform&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
-            target="_blank"
-          >
+          <Link href={GOOGLE_PLAY_STORE_APP_URL} target="_blank">
             <img
               alt="Get it on Google Play"
               src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
@@ -142,6 +143,7 @@ export const getServerSideProps = withIronSessionSsr(
 const Home: NextPage<{ user: User }> = (props) => {
   // const login = api.login.login.useMutation();
   // console.log("Page props", props);
+  const isMember = new Date(props.user?.sub_end_date) > new Date();
   return (
     <>
       <Head>
@@ -171,7 +173,7 @@ const Home: NextPage<{ user: User }> = (props) => {
         </div>
 
         <div>
-          {new Date(props.user?.sub_end_date) > new Date() ? (
+          {isMember ? (
             <div className="animate-pulse text-3xl text-emerald-200 ">
               Membership Active
             </div>
@@ -189,9 +191,10 @@ const Home: NextPage<{ user: User }> = (props) => {
 
         <AppDownloadlinks />
 
-        <BouncingHeader text="Membership" />
+        <BouncingHeader text="Membership Benefits" />
 
         <ImageAndTextRow url="/images/linechartA.png">
+          <p className="p-4 text-2xl text-cyan-200">No ADS!</p>
           <p className="p-4 text-xl text-cyan-100">
             Create and complete an unlimited number of workouts each day.
           </p>
@@ -207,7 +210,7 @@ const Home: NextPage<{ user: User }> = (props) => {
           </p>
         </ImageAndTextRow>
 
-        <BouncingHeader text="Features" />
+        <BouncingHeader text="App Features" />
 
         <TextAndImageRow url="/images/chartA.png">
           <p className="p-4 text-xl text-emerald-100">

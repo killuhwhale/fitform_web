@@ -6,6 +6,10 @@ import { api } from "components/utils/api";
 import react, { useEffect, useState } from "react";
 import Header from "components/components/Header";
 import { useRouter } from "next/router";
+import {
+  APPLE_APP_STORE_APP_URL,
+  GOOGLE_PLAY_STORE_APP_URL,
+} from "components/utils/constants";
 
 const SignInForm = () => {
   const login = api.login.login.useMutation();
@@ -97,6 +101,28 @@ const Login: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#007cff] to-[#15162c]">
         <h1 className="text-5xl text-white">Login</h1>
         <SignInForm />
+        <div className=" text-slate-300">
+          <p>Dont have an account?</p>
+          <p>Create an account via our mobile app!</p>
+          <p>
+            Download the app on{" "}
+            <Link
+              className="text-blue-600"
+              href={APPLE_APP_STORE_APP_URL}
+              target="_blank"
+            >
+              Apple's App store
+            </Link>{" "}
+            or{" "}
+            <Link
+              className="text-green-600"
+              href={GOOGLE_PLAY_STORE_APP_URL}
+              target="_blank"
+            >
+              Google's Play Store
+            </Link>
+          </p>
+        </div>
       </main>
     </>
   );
