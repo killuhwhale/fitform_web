@@ -6,6 +6,7 @@ import ActionCancelModal from "./modals/ActionCancelModal";
 
 interface ProductDisplayProps {
   products: Products;
+  userToken?: string;
   onSelect(stripePriceId: string): void;
 }
 
@@ -259,8 +260,9 @@ const ProductDisplay: react.FC<ProductDisplayProps> = (props) => {
   }, [checkoutSession.data?.stripeSession]);
 
   const handleSubmit = () => {
-    setLoading(true);
+    if (!props.userToken) return alert("User information not found.");
     if (!selected) return;
+    setLoading(true);
     // if (checkoutSession.data?.stripeSession) {
     // Modify/ cancel or delete the session before creating a new one??
     // }
@@ -310,7 +312,9 @@ const ProductDisplay: react.FC<ProductDisplayProps> = (props) => {
           type="submit"
           disabled={loading}
         >
-          Checkout {selected?.name} - {selected?.price}
+          {props.userToken
+            ? `Checkout ${selected?.name} - ${selected?.price}`
+            : "Sign in to join!"}
         </button>
 
         <ActionCancelModal

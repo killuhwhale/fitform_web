@@ -156,7 +156,7 @@ const Home: NextPage<{ user: User }> = (props) => {
       </Head>
       <Header user={props.user} />
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#007cff] to-[#15162c]">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+        <div className="container flex flex-col items-center justify-center gap-12 p-16 px-4 ">
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Fit<span className="text-[hsl(200,100%,70%)]">Trackrr</span>
           </h1>
@@ -177,15 +177,12 @@ const Home: NextPage<{ user: User }> = (props) => {
             <div className="animate-pulse text-3xl text-emerald-200 ">
               Membership Active
             </div>
-          ) : props.user?.token ? (
+          ) : (
             <ProductDisplay
+              userToken={props.user?.token}
               onSelect={(product) => console.log("selected product: ", product)}
               products={products}
             />
-          ) : (
-            <h2 className="text-3xl  text-white">
-              Sign in to see membership options!
-            </h2>
           )}
         </div>
 
