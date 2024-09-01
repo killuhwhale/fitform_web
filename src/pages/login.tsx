@@ -1,15 +1,10 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
 import { api } from "components/utils/api";
-import react, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "components/components/Header";
 import { useRouter } from "next/router";
-import {
-  APPLE_APP_STORE_APP_URL,
-  GOOGLE_PLAY_STORE_APP_URL,
-} from "components/utils/constants";
 
 const SignInForm = () => {
   const login = api.login.login.useMutation();
@@ -108,7 +103,7 @@ const Login: NextPage = () => {
             Download the app on{" "}
             <Link
               className="text-blue-600"
-              href={APPLE_APP_STORE_APP_URL}
+              href={process.env.APPLE_APP_STORE_APP_URL ?? ""}
               target="_blank"
             >
               Apple's App store
@@ -116,7 +111,7 @@ const Login: NextPage = () => {
             or{" "}
             <Link
               className="text-green-600"
-              href={GOOGLE_PLAY_STORE_APP_URL}
+              href={process.env.GOOGLE_PLAY_STORE_APP_URL ?? ""}
               target="_blank"
             >
               Google's Play Store

@@ -12,10 +12,7 @@ import { products } from "lib/stripe_config";
 import ProductDisplay from "components/components/ProductDisplay";
 
 import { env } from "components/env.mjs";
-import {
-  APPLE_APP_STORE_APP_URL,
-  GOOGLE_PLAY_STORE_APP_URL,
-} from "components/utils/constants";
+
 interface ImageTextRowProps {
   url: string;
 }
@@ -89,7 +86,7 @@ const AppDownloadlinks: FC = () => {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8">
         <Link
           className="flex w-[420px] max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-          href={APPLE_APP_STORE_APP_URL}
+          href={process.env.APPLE_APP_STORE_APP_URL ?? ""}
           target="_blank"
         >
           <h3 className="text-2xl font-bold">iOS →</h3>
@@ -97,7 +94,10 @@ const AppDownloadlinks: FC = () => {
         </Link>
         <div className="flex  max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20">
           <h3 className="text-2xl font-bold">Android →</h3>
-          <Link href={GOOGLE_PLAY_STORE_APP_URL} target="_blank">
+          <Link
+            href={process.env.GOOGLE_PLAY_STORE_APP_URL ?? ""}
+            target="_blank"
+          >
             <img
               alt="Get it on Google Play"
               src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
@@ -147,7 +147,7 @@ const Home: NextPage<{ user: User }> = (props) => {
   return (
     <>
       <Head>
-        <title>FitTrackrr</title>
+        <title>RepTrackrr</title>
         <meta
           name="description"
           content="Fitness platform to track and visualize workouts."
@@ -158,16 +158,15 @@ const Home: NextPage<{ user: User }> = (props) => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#007cff] to-[#15162c]">
         <div className="container flex flex-col items-center justify-center gap-12 p-16 px-4 ">
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            Fit<span className="text-[hsl(200,100%,70%)]">Trackrr</span>
+            Rep<span className="text-[hsl(200,100%,70%)]">Trackrr</span>
           </h1>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
             <div className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white">
-              Create, Plan and Track your workouts. Easily visualize your effort
-              across time.
+              Create, Plan and Track your workouts.
             </div>
             <div className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white">
-              Manage your gym and members&apos; progress all in one place!
+              Easily visualize your effort across time.
             </div>
           </div>
         </div>
@@ -192,10 +191,8 @@ const Home: NextPage<{ user: User }> = (props) => {
 
         <ImageAndTextRow url="/images/linechartA.png">
           <p className="p-4 text-2xl text-cyan-200">No ADS!</p>
-          <p className="p-4 text-xl text-cyan-100">
-            Create and complete an unlimited number of workouts each day.
-          </p>
-          <p className="p-4 text-xl text-cyan-200">Run unlimited gyms.</p>
+
+          {/* <p className="p-4 text-xl text-cyan-200">Run unlimited gyms.</p>
           <p className="p-4 text-xl text-cyan-300">Create unlimited classes.</p>
           <p className="p-4 text-xl text-cyan-300">Create private classes.</p>
           <p className="p-4 text-xl text-cyan-300">
@@ -204,13 +201,16 @@ const Home: NextPage<{ user: User }> = (props) => {
           <p className="p-4 text-xl text-cyan-400">
             Give your Trainers & Coaches a place to host their workouts and
             monitor their clients&apos; workout volume.
-          </p>
+          </p> */}
         </ImageAndTextRow>
 
         <BouncingHeader text="App Features" />
 
         <TextAndImageRow url="/images/chartA.png">
-          <p className="p-4 text-xl text-emerald-100">
+          <p className="p-4 text-xl text-cyan-100">
+            Create and complete an unlimited number of workouts each day.
+          </p>
+          {/* <p className="p-4 text-xl text-emerald-100">
             Follow your favorite gyms and classes.
           </p>
           <p className="p-4 text-xl text-emerald-200">
@@ -228,7 +228,7 @@ const Home: NextPage<{ user: User }> = (props) => {
           </p>
           <p className="p-4 text-xl text-emerald-500">
             - View other members workout volume & stats.
-          </p>
+          </p> */}
         </TextAndImageRow>
 
         <hr className="mx-auto my-4 h-1 w-48 rounded border-0 bg-slate-300 md:my-20"></hr>
