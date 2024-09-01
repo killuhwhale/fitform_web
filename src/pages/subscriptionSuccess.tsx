@@ -111,7 +111,7 @@ const SubscriptionSuccessPage: NextPage<{ user: User }> = (props) => {
   return (
     <>
       <Head>
-        <title>FitTrackrr</title>
+        <title>{process.env.APP_NAME ?? ""}</title>
         <meta
           name="description"
           content="Fitness platform to track and visualize workouts."
@@ -128,9 +128,9 @@ const SubscriptionSuccessPage: NextPage<{ user: User }> = (props) => {
                 Welcome to our community!
               </p>
               <p className="text-base">
-                {
-                  " Thanks for subscribing to our app. You're now part of the FitTrackrr community. We can't wait to see all your workouts to come. Happy Fitnessing!"
-                }
+                {`Thanks for subscribing to our app. You're now part of the ${
+                  process.env.APP_NAME ?? ""
+                } community. We can't wait to see all your workouts to come. Happy Fitnessing!`}
               </p>
             </div>
           ) : (

@@ -22,7 +22,7 @@ const Header: React.FC<{ user?: User }> = (props) => {
           href="/"
           className="text-lg font-bold text-slate-200 hover:text-slate-700"
         >
-          <span>FitTrackrr</span>
+          <span>${process.env.APP_NAME ?? ""}</span>
         </Link>
       </div>
       <div className="flex items-center">

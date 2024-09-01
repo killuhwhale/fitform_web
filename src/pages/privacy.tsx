@@ -57,7 +57,7 @@ const PrivacyPolicyPage: NextPage<{ user: User }> = (props) => {
   return (
     <>
       <Head>
-        <title>FitTrackrr</title>
+        <title>${process.env.APP_NAME ?? ""}</title>
         <meta
           name="description"
           content="Fitness platform to track and visualize workouts."
@@ -70,25 +70,31 @@ const PrivacyPolicyPage: NextPage<{ user: User }> = (props) => {
           <div className="rounded-lg bg-blue-500 px-6 py-4 text-white sm:w-[650px]">
             <p className="mb-2 text-center text-lg font-bold">Privacy Policy</p>
             <p className="mb-2 text-lg">
-              At FitTrackrr, we respect your personal information and, as such,
+              {`At ${
+                process.env.APP_NAME ?? ""
+              }, we respect your personal information and, as such,
               have created this Privacy Policy to demonstrate our firm
-              commitment to your privacy.
+              commitment to your privacy.`}
             </p>
             <ul className="list-disc">
               <span className="font-medium">1. Information We Collect</span>
               <li className="ml-6">
-                When you use FitTrackrr, we collect: Login Information: This
+                {`When you use ${
+                  process.env.APP_NAME ?? ""
+                }, we collect: Login Information: This
                 includes your email address, and password. We use this
                 information to allow you to log into our application and access
-                its features.
+                its features.`}
               </li>
               <span className="font-medium">
                 2. How We Use Your Information
               </span>
               <li className="ml-6">
-                We use the information we collect to: Allow you to access and
-                use FitTrackrr. Ensure the secure functioning of our services.
-                Respond to support and help requests.
+                {`We use the information we collect to: Allow you to access and
+                use ${
+                  process.env.APP_NAME ?? ""
+                }. Ensure the secure functioning of our services.
+                Respond to support and help requests.`}
               </li>
               <span className="font-medium">
                 3. How We Protect Your Information
@@ -123,8 +129,10 @@ const PrivacyPolicyPage: NextPage<{ user: User }> = (props) => {
                 7. Your Acceptance of These Terms
               </span>
               <li className="ml-6">
-                By using FitTrackrr, you signify your acceptance of this policy.
-                If you do not agree to this policy, please do not use our app.
+                {`By using ${
+                  process.env.APP_NAME ?? ""
+                }, you signify your acceptance of this policy.
+                If you do not agree to this policy, please do not use our app.`}
               </li>
             </ul>
           </div>

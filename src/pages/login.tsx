@@ -85,7 +85,7 @@ const Login: NextPage = () => {
   return (
     <>
       <Head>
-        <title>FitTrackrr - Login</title>
+        <title>${process.env.APP_NAME ?? ""} - Login</title>
         <meta
           name="description"
           content="Fitness platform to track and visualize workouts."
