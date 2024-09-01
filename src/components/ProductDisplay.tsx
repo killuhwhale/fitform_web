@@ -115,7 +115,7 @@ const ProductCard: react.FC<{
             ></path>
           </svg>
           <span className="text-base font-normal leading-tight text-gray-400">
-            Unlimited access! Create unlimted gyms, classes and workouts.
+            Unlimited access! Create unlimted workouts.
           </span>
         </li>
         {/*  <li className="flex space-x-3">
