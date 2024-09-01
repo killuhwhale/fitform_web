@@ -111,7 +111,7 @@ const SubscriptionSuccessPage: NextPage<{ user: User }> = (props) => {
   return (
     <>
       <Head>
-        <title>{process.env.APP_NAME ?? ""}</title>
+        <title>{process.env.NEXT_PUBLIC_APP_NAME ?? ""}</title>
         <meta
           name="description"
           content="Fitness platform to track and visualize workouts."
@@ -129,7 +129,7 @@ const SubscriptionSuccessPage: NextPage<{ user: User }> = (props) => {
               </p>
               <p className="text-base">
                 {`Thanks for subscribing to our app. You're now part of the ${
-                  process.env.APP_NAME ?? ""
+                  process.env.NEXT_PUBLIC_APP_NAME ?? ""
                 } community. We can't wait to see all your workouts to come. Happy Fitnessing!`}
               </p>
             </div>

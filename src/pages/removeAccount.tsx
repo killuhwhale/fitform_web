@@ -121,7 +121,7 @@ const RemoveAccountPage: NextPage<{ user: User }> = (props) => {
   return (
     <>
       <Head>
-        <title>${process.env.APP_NAME ?? ""}</title>
+        <title>{process.env.NEXT_PUBLIC_APP_NAME ?? ""}</title>
         <meta
           name="description"
           content="Fitness platform to track and visualize workouts."

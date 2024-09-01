@@ -33,7 +33,7 @@ const Header: React.FC<{ user?: User }> = (props) => {
             className="h-[40px] sm:h-[48px] lg:h-[64px]"
             style={{ borderRadius: 100 }}
           />
-          <span className="ml-8">${process.env.APP_NAME ?? ""}</span>
+          <span className="ml-8">{process.env.NEXT_PUBLIC_APP_NAME ?? ""}</span>
         </Link>
 
         <div className="md:hidden">

@@ -57,7 +57,7 @@ const PrivacyPolicyPage: NextPage<{ user: User }> = (props) => {
   return (
     <>
       <Head>
-        <title>${process.env.APP_NAME ?? ""}</title>
+        <title>{process.env.NEXT_PUBLIC_APP_NAME ?? ""}</title>
         <meta
           name="description"
           content="Fitness platform to track and visualize workouts."
@@ -71,7 +71,7 @@ const PrivacyPolicyPage: NextPage<{ user: User }> = (props) => {
             <p className="mb-2 text-center text-lg font-bold">Privacy Policy</p>
             <p className="mb-2 text-lg">
               {`At ${
-                process.env.APP_NAME ?? ""
+                process.env.NEXT_PUBLIC_APP_NAME ?? ""
               }, we respect your personal information and, as such,
               have created this Privacy Policy to demonstrate our firm
               commitment to your privacy.`}
@@ -80,7 +80,7 @@ const PrivacyPolicyPage: NextPage<{ user: User }> = (props) => {
               <span className="font-medium">1. Information We Collect</span>
               <li className="ml-6">
                 {`When you use ${
-                  process.env.APP_NAME ?? ""
+                  process.env.NEXT_PUBLIC_APP_NAME ?? ""
                 }, we collect: Login Information: This
                 includes your email address, and password. We use this
                 information to allow you to log into our application and access
@@ -92,7 +92,7 @@ const PrivacyPolicyPage: NextPage<{ user: User }> = (props) => {
               <li className="ml-6">
                 {`We use the information we collect to: Allow you to access and
                 use ${
-                  process.env.APP_NAME ?? ""
+                  process.env.NEXT_PUBLIC_APP_NAME ?? ""
                 }. Ensure the secure functioning of our services.
                 Respond to support and help requests.`}
               </li>
@@ -130,7 +130,7 @@ const PrivacyPolicyPage: NextPage<{ user: User }> = (props) => {
               </span>
               <li className="ml-6">
                 {`By using ${
-                  process.env.APP_NAME ?? ""
+                  process.env.NEXT_PUBLIC_APP_NAME ?? ""
                 }, you signify your acceptance of this policy.
                 If you do not agree to this policy, please do not use our app.`}
               </li>
