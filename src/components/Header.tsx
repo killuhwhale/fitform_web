@@ -179,7 +179,7 @@ const Header: React.FC<{ user?: User }> = (props) => {
               </div>
             </div>
             <p className="my-4 text-center text-xs text-gray-400">
-              <span>Copyright © 2021</span>
+              <span>Copyright © 2024</span>
             </p>
           </div>
         </nav>
