@@ -103,7 +103,7 @@ const Login: NextPage = () => {
             Download the app on{" "}
             <Link
               className="text-blue-600"
-              href={process.env.APPLE_APP_STORE_APP_URL ?? ""}
+              href={process.env.NEXT_PUBLIC_APPLE_APP_STORE_APP_URL ?? ""}
               target="_blank"
             >
               Apple's App store
@@ -111,7 +111,7 @@ const Login: NextPage = () => {
             or{" "}
             <Link
               className="text-green-600"
-              href={process.env.GOOGLE_PLAY_STORE_APP_URL ?? ""}
+              href={process.env.NEXT_PUBLIC_GOOGLE_PLAY_STORE_APP_URL ?? ""}
               target="_blank"
             >
               Google's Play Store
