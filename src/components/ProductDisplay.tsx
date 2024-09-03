@@ -11,9 +11,10 @@ interface ProductDisplayProps {
 }
 
 const DISCLAIMER = `Your purchase is final and non-refundable.
-Your membership will be valid for the duration specified at the time of purchase.
+You can stop the your sbuscription at any time.
+Your membership benefits will continue until the expiration date even after cancellation.
 You will not be entitled to a refund or credit if you decide to cancel your membership early.
-We reserve the right to modify, suspend or terminate your membership at any time, without notice, for any reason. (but most likely only if you are hacking us...)`;
+We reserve the right to modify, suspend or terminate your membership at any time, without notice for abuse of the platform.`;
 
 /**
  *
