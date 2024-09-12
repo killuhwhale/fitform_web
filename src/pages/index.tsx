@@ -120,7 +120,7 @@ export const getServerSideProps = withIronSessionSsr(
         },
       });
 
-      console.log("updateRes: ", updateRes);
+      // console.log("updateRes: ", updateRes);
       if (updateRes.status == 200) {
         const updateUser: User = (await updateRes.json()) as User;
 

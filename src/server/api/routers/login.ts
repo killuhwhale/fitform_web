@@ -10,7 +10,7 @@ import { User } from "lib/session";
 import { env } from "components/env.mjs";
 
 type loginResult = { access: string };
-type removeResult = { success: boolean; error: string };
+type removeResult = { success?: boolean; error?: string };
 
 /** Should rename to reflect Django API access */
 export const loginRouter = createTRPCRouter({
@@ -122,6 +122,7 @@ export const loginRouter = createTRPCRouter({
           }),
         });
         const data = (await res.json()) as removeResult;
+        console.log("removeResult:", data);
         return data;
       } catch (err) {
         console.log("Error rm account: ", err);

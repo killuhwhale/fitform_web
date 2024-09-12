@@ -31,6 +31,8 @@ const SignInForm = () => {
         .push("/")
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
+    } else if (login.data?.error) {
+      alert("Failed to login, try again...");
     }
   }, [login.data]);
 

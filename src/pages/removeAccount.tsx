@@ -10,6 +10,8 @@ import { env } from "components/env.mjs";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import { api } from "components/utils/api";
 
+const RM_ACCOUNT_SUCCESS_MSG = "Account removed sucessfully!";
+
 export const getServerSideProps = withIronSessionSsr(
   async function getServerSideProps({ req, query }) {
     /** When a Checkout is successful, Stripe redirects to this Page.
@@ -60,6 +62,7 @@ const RemoveAccountConfirm: FC<{ email: string }> = ({ email }) => {
   const [cEmail, setEmail] = useState("");
   const [rmMessage, setRmMessage] = useState("");
   const rmAccount = api.login.removeAccount.useMutation();
+  const router = useRouter();
 
   const removeAccount = () => {
     if (cEmail === email) {
@@ -74,39 +77,64 @@ const RemoveAccountConfirm: FC<{ email: string }> = ({ email }) => {
   };
 
   useEffect(() => {
+    console.log("rm account.data", rmAccount.data);
+
     if (rmAccount.data && rmAccount.data.success) {
-      setRmMessage("Account removed sucessfully!");
+      setRmMessage(RM_ACCOUNT_SUCCESS_MSG);
+      setTimeout(() => router.replace(router.asPath), 5000);
     } else if (rmAccount.data && rmAccount.data.success === false) {
       setRmMessage(`Failed to remove accout: ${rmAccount.data.error}`);
     }
   }, [rmAccount.data]);
 
+  if (!email) {
+    return (
+      <div className="flex w-3/4 justify-center p-4">
+        <p className="text-center">Sign in to remove account</p>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full items-center justify-center">
-      <div className="flex w-3/4 justify-center">
-        <p className="text-center">{email}</p>
-      </div>
-      <div className="flex w-full flex-row items-center justify-center">
-        <div className="flex w-3/4 justify-center">
-          <input
-            type="text"
-            value={cEmail}
-            //   placeholder={email}
-            onChange={(ev: ChangeEvent<HTMLInputElement>) =>
-              setEmail(ev.target.value)
-            }
-            className="h-[25px] w-1/2 bg-stone-950  pl-2 text-lg text-red-400"
-          />
+      {rmMessage.length > 0 ? (
+        <div className="flex w-3/4 justify-center p-4">
+          <p className="text-center">{rmMessage}</p>
         </div>
-        <div className="flex w-1/4 justify-center">
-          <button
-            onClick={() => removeAccount()}
-            className="h-[25px] w-1/2 bg-rose-500  hover:bg-rose-800    active:bg-rose-500"
-          >
-            Remove
-          </button>
-        </div>
-      </div>
+      ) : (
+        <></>
+      )}
+
+      {RM_ACCOUNT_SUCCESS_MSG !== rmMessage ? (
+        <>
+          <div className="flex w-3/4 justify-center p-4">
+            <p className="text-center">{email}</p>
+          </div>
+          <div className="flex w-full flex-row items-center justify-center">
+            <div className="flex w-3/4 justify-center">
+              <input
+                type="text"
+                value={cEmail}
+                //   placeholder={email}
+                onChange={(ev: ChangeEvent<HTMLInputElement>) =>
+                  setEmail(ev.target.value)
+                }
+                className="h-[25px] w-1/2 bg-stone-950  pl-2 text-lg text-red-400"
+              />
+            </div>
+            <div className="flex w-1/4 justify-center">
+              <button
+                onClick={() => removeAccount()}
+                className="h-[25px] w-1/2 bg-rose-500  hover:bg-rose-800    active:bg-rose-500"
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
@@ -134,7 +162,7 @@ const RemoveAccountPage: NextPage<{ user: User }> = (props) => {
               If you want to remove your account please enter your email and
               press submit.
             </p>
-            {props.user ? (
+            {props.user.email ? (
               <RemoveAccountConfirm email={props.user.email} />
             ) : (
               <p>Must be signed in to remove your account.</p>
