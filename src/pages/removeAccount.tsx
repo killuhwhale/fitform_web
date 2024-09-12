@@ -64,6 +64,7 @@ const RemoveAccountConfirm: FC<{ email: string }> = ({ email }) => {
   const removeAccount = () => {
     if (cEmail === email) {
       console.log("removing account");
+
       rmAccount.mutate({ email: email });
     } else {
       alert(
@@ -73,13 +74,9 @@ const RemoveAccountConfirm: FC<{ email: string }> = ({ email }) => {
   };
 
   useEffect(() => {
-    if (rmAccount.data && rmAccount.data.success && rmMessage.length === 0) {
+    if (rmAccount.data && rmAccount.data.success) {
       setRmMessage("Account removed sucessfully!");
-    } else if (
-      rmAccount.data &&
-      rmAccount.data.success === false &&
-      rmMessage.length === 0
-    ) {
+    } else if (rmAccount.data && rmAccount.data.success === false) {
       setRmMessage(`Failed to remove accout: ${rmAccount.data.error}`);
     }
   }, [rmAccount.data]);
