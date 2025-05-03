@@ -29,7 +29,7 @@ const Header: React.FC<{ user?: User }> = (props) => {
           className="flex flex-row items-center justify-center text-lg font-bold text-slate-200 hover:text-slate-700 "
         >
           <img
-            src="/images/icon_7.png"
+            src="/images/icon_1024.png"
             className="h-[40px] sm:h-[48px] lg:h-[64px]"
             style={{ borderRadius: 100 }}
           />
@@ -75,9 +75,9 @@ const Header: React.FC<{ user?: User }> = (props) => {
                   <p className="align-center mr-4  text-slate-200 hover:text-slate-700 md:text-sm lg:text-lg">
                     {props.user.email}
                   </p>
-                  <p className="align-center mr-4  text-slate-200 hover:text-slate-700 md:text-sm lg:text-lg">
+                  {/* <p className="align-center mr-4  text-slate-200 hover:text-slate-700 md:text-sm lg:text-lg">
                     ({props.user.customer_id})
-                  </p>
+                  </p> */}
                 </div>
                 {new Date(props.user.sub_end_date) > new Date() ? (
                   <div className="mr-4 rounded-lg bg-emerald-600 p-1 text-white hover:bg-cyan-700 focus:bg-cyan-700 active:bg-cyan-800 md:w-[180px]">
@@ -110,7 +110,7 @@ const Header: React.FC<{ user?: User }> = (props) => {
           <div className="mb-8 flex items-center">
             <Link className="mr-auto text-5xl font-bold leading-none" href="/">
               <img
-                src="/images/icon_7.png"
+                src="/images/icon_1024.png"
                 className="h-[40px] sm:h-[48px] lg:h-[64px]"
                 style={{ borderRadius: 100 }}
               />

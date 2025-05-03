@@ -29,7 +29,7 @@ const BouncingHeader: FC<{ text: string }> = (props) => {
 
 const ImageAndTextRow: FC<PropsWithChildren<ImageTextRowProps>> = (props) => {
   return (
-    <div className="container flex max-w-full flex-wrap content-center  items-center">
+    <div className="container flex w-full max-w-full flex-wrap content-center  items-center">
       <div className="md:w-1/2 md:px-4">
         <img
           src={props.url}
@@ -45,7 +45,7 @@ const ImageAndTextRow: FC<PropsWithChildren<ImageTextRowProps>> = (props) => {
         />
       </div>
 
-      <div className="mx-auto  md:w-1/2 md:px-4">
+      <div className="mx-auto w-full md:w-1/2 md:px-4">
         <ul className="mx-auto list-disc content-center items-center justify-center md:ml-12">
           {props.children}
         </ul>
@@ -158,7 +158,7 @@ const Home: NextPage<{ user: User }> = (props) => {
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#007cff] to-[#15162c]">
         <div className="container flex flex-col items-center justify-center gap-12 p-16 px-4 ">
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            Rep<span className="text-[hsl(200,100%,70%)]">Trackrr</span>
+            Lift<span className="text-[hsl(200,100%,70%)]">L0g</span>
           </h1>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
@@ -171,17 +171,20 @@ const Home: NextPage<{ user: User }> = (props) => {
           </div>
         </div>
 
-        <div>
+        <div className="m-8">
           {isMember ? (
             <div className="animate-pulse text-3xl text-emerald-200 ">
               Membership Active
             </div>
           ) : (
-            <ProductDisplay
-              userToken={props.user?.token}
-              onSelect={(product) => console.log("selected product: ", product)}
-              products={products}
-            />
+            <div className="animate-pulse text-3xl text-emerald-200 ">
+              Membership Inactive
+            </div>
+            // <ProductDisplay
+            //   userToken={props.user?.token}
+            //   onSelect={(product) => console.log("selected product: ", product)}
+            //   products={products}
+            // />
           )}
         </div>
 
@@ -190,46 +193,29 @@ const Home: NextPage<{ user: User }> = (props) => {
         <BouncingHeader text="Membership Benefits" />
 
         <ImageAndTextRow url="/images/linechartA.png">
-          <p className="p-4 text-2xl text-cyan-200">No ADS!</p>
-
-          {/* <p className="p-4 text-xl text-cyan-200">Run unlimited gyms.</p>
-          <p className="p-4 text-xl text-cyan-300">Create unlimited classes.</p>
-          <p className="p-4 text-xl text-cyan-300">Create private classes.</p>
-          <p className="p-4 text-xl text-cyan-300">
-            Allow Coaches to manage classes: Add/ remove workouts.
+          <p className="p-4 text-2xl text-cyan-200">Remove all ads!</p>
+          <p className="p-4 text-2xl text-cyan-200">
+            Reach your goals with proven workout plans!
           </p>
-          <p className="p-4 text-xl text-cyan-400">
-            Give your Trainers & Coaches a place to host their workouts and
-            monitor their clients&apos; workout volume.
-          </p> */}
+          <p className="p-4 text-2xl text-cyan-200">
+            Access to use AI to Generate your own Workouts!
+          </p>
+          <p className="p-4 text-2xl text-cyan-200">No ADS!</p>
         </ImageAndTextRow>
 
         <BouncingHeader text="App Features" />
 
-        <TextAndImageRow url="/images/chartA.png">
-          <p className="p-4 text-xl text-cyan-100">
-            Create and complete an unlimited number of workouts each day.
+        <ImageAndTextRow url="/images/chartA.png">
+          <p className="p-4 text-2xl text-cyan-100">
+            Create up to 15 workouts per day
           </p>
-          {/* <p className="p-4 text-xl text-emerald-100">
-            Follow your favorite gyms and classes.
+          <p className="p-4 text-2xl text-cyan-100">
+            World Class workout plans
           </p>
-          <p className="p-4 text-xl text-emerald-200">
-            Complete workouts created by other gyms and classes.
+          <p className="p-4 text-2xl text-cyan-100">
+            AI-powered workout generator
           </p>
-          <p className="p-4 text-xl text-emerald-300">
-            Create private classes for online personal coaching.
-          </p>
-          <p className="p-4 text-xl text-emerald-400">
-            View your stats: see charts and graphs that summarize your workouts.
-          </p>
-          <p className="p-4 text-xl text-emerald-500">Future features:</p>
-          <p className="p-4 text-xl text-emerald-500">
-            - View your class members&apos; workout volume & stats.
-          </p>
-          <p className="p-4 text-xl text-emerald-500">
-            - View other members workout volume & stats.
-          </p> */}
-        </TextAndImageRow>
+        </ImageAndTextRow>
 
         <hr className="mx-auto my-4 h-1 w-48 rounded border-0 bg-slate-300 md:my-20"></hr>
 

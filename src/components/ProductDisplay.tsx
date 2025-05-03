@@ -3,7 +3,7 @@ import { Product, Products } from "lib/stripe_config";
 import react, { useEffect, useState } from "react";
 import { api } from "components/utils/api";
 import ActionCancelModal from "./modals/ActionCancelModal";
-
+import { useRouter } from "next/router";
 interface ProductDisplayProps {
   products: Products;
   userToken?: string;
@@ -229,7 +229,7 @@ const ProductDisplay: react.FC<ProductDisplayProps> = (props) => {
   const [selected, setSelected] = useState(props.products[0]);
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const router = useRouter();
   const checkoutSession = api.stripe.checkout_sessions.useMutation();
 
   const onChange = (product: Product) => {
@@ -308,7 +308,9 @@ const ProductDisplay: react.FC<ProductDisplayProps> = (props) => {
           value={selected?.stripePriceId}
         />
         <button
-          onClick={() => setIsModalOpen(true)}
+          onClick={() =>
+            props.userToken ? setIsModalOpen(true) : router.push("/login")
+          }
           className="border-white-100 w-full  border bg-indigo-700 p-4 text-center text-white hover:bg-indigo-900 focus:bg-cyan-700 active:bg-cyan-800"
           type="submit"
           disabled={loading}
